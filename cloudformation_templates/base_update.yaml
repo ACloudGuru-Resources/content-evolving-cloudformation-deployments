@@ -79,13 +79,13 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: IronCitySubnet1
+          Value: IronCityProdSubnet
   VPC1PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC1
       AvailabilityZone: !Select 
-        - '0'
+        - '1'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -94,13 +94,13 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: IronCitySubnet2
+          Value: IronCityPreProdSubnet
   VPC1PublicSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC1
       AvailabilityZone: !Select 
-        - '0'
+        - '2'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -109,7 +109,7 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: IronCitySubnet3
+          Value: IronCityDevSubnet
   VPC2PublicSubnet:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -124,13 +124,13 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: LapisCitySubnet1
+          Value: LapisCityProdSubnet
   VPC2PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC2
       AvailabilityZone: !Select 
-        - '0'
+        - '1'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -139,13 +139,13 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: LapisCitySubnet2
+          Value: LapisCityPreProdSubnet
   VPC2PublicSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC2
       AvailabilityZone: !Select 
-        - '0'
+        - '2'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -154,7 +154,7 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: LapisCitySubnet3
+          Value: LapisCityDevSubnet
   VPC3PublicSubnet:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -169,13 +169,13 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: RubyCitySubnet1
+          Value: RubyCityProdSubnet
   VPC3PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC3
       AvailabilityZone: !Select 
-        - '0'
+        - '1'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -184,13 +184,13 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: RubyCitySubnet2
+          Value: RubyCityPreProdSubnet
   VPC3PublicSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC3
       AvailabilityZone: !Select 
-        - '0'
+        - '2'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -199,7 +199,7 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: RubyCitySubnet3
+          Value: RubyCityDevSubnet
   InternetGateway1:
     Type: 'AWS::EC2::InternetGateway'
     Properties:

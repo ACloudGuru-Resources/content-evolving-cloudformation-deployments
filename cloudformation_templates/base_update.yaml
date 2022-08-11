@@ -583,6 +583,8 @@ Resources:
       Tags:
         - Key: Name
           Value: IronCityEC2
+        - Key: Environment
+          Value: Prod
   EC2SecurityGroup1:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -636,6 +638,8 @@ Resources:
       Tags:
         - Key: Name
           Value: LapisCityEC2
+        - Key: Environment
+          Value: Prod
   EC2SecurityGroup2:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -689,6 +693,8 @@ Resources:
       Tags:
         - Key: Name
           Value: RubyCityEC2
+        - Key: Environment
+          Value: Prod
   EC2SecurityGroup3:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:

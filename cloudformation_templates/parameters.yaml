@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Create EC2 instances and specify network. 
+Parameters: 
+  SecurityGroupList:
+    Description: Select your Security Group
+    Type: List<AWS::EC2::SecurityGroup::Id>
+  SubnetId:
+    Description: Select your Subnet
+    Type: List<AWS::EC2::Subnet::Id>
+  InstanceType:
+    AllowedValues:
+      - t3.micro
+      - t3.small
+      - t3.medium
+      - t3.large
+    ConstraintDescription: "Must be a valid EC2 Instance Type"
+    Default: t3.micro
+    Description: Select the instance type.
+    Type: String
+  Environment:
+    AllowedValues:
+      - Dev
+      - Pre-Prod
+      - Prod
+    Description: Application environment for this instance. 
+    Type: String
+  InstanceName:
+    ConstraintDescription: Must follow normal syntax conventions.
+    Type: String
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType
+      ImageId: ami-090fa75af13c156b4
+      SecurityGroupIds: !Ref SecurityGroupList
+      SubnetId: !Join [',', !Ref SubnetId]
+      Tags:
+        - Key: Name
+          Value: !Ref InstanceName
+        - Key: Environment
+          Value: !Ref Environment

@@ -4,29 +4,29 @@ Mappings:
   Subnet1Config:
     VPC1:
       CIDR: 10.0.0.0/16
-    Public:
-      CIDR: 10.0.0.0/24
     Public1:
-      CIDR: 10.0.1.0/24
+      CIDR: 10.0.0.0/24
     Public2:
+      CIDR: 10.0.1.0/24
+    Public3:
       CIDR: 10.0.2.0/24
   Subnet2Config:
     VPC2:
       CIDR: 10.10.0.0/16
-    Public:
-      CIDR: 10.10.0.0/24
     Public1:
-      CIDR: 10.10.1.0/24
+      CIDR: 10.10.0.0/24
     Public2:
+      CIDR: 10.10.1.0/24
+    Public3:
       CIDR: 10.10.2.0/24
   Subnet3Config:
     VPC3:
       CIDR: 10.20.0.0/16
-    Public:
-      CIDR: 10.20.0.0/24
     Public1:
-      CIDR: 10.20.1.0/24
+      CIDR: 10.20.0.0/24
     Public2:
+      CIDR: 10.20.1.0/24
+    Public3:
       CIDR: 10.20.2.0/24
 Resources:
   VPC1:
@@ -65,27 +65,12 @@ Resources:
       Tags:
         - Key: Name
           Value: Ruby City
-  VPC1PublicSubnet:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC1
-      AvailabilityZone: !Select 
-        - '0'
-        - !GetAZs us-east-1
-      MapPublicIpOnLaunch: 'true'
-      CidrBlock: !FindInMap 
-        - Subnet1Config
-        - Public
-        - CIDR
-      Tags:
-        - Key: Name
-          Value: IronCityProdSubnet
   VPC1PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC1
       AvailabilityZone: !Select 
-        - '1'
+        - '0'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -94,8 +79,23 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: IronCityPreProdSubnet
+          Value: IronCityProdSubnet
   VPC1PublicSubnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC1
+      AvailabilityZone: !Select 
+        - '1'
+        - !GetAZs us-east-1
+      MapPublicIpOnLaunch: 'true'
+      CidrBlock: !FindInMap 
+        - Subnet1Config
+        - Public2
+        - CIDR
+      Tags:
+        - Key: Name
+          Value: IronCityPreProdSubnet
+  VPC1PublicSubnet3:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC1
@@ -105,32 +105,17 @@ Resources:
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
         - Subnet1Config
-        - Public2
+        - Public3
         - CIDR
       Tags:
         - Key: Name
           Value: IronCityDevSubnet
-  VPC2PublicSubnet:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref VPC2
-      AvailabilityZone: !Select 
-        - '0'
-        - !GetAZs us-east-1
-      MapPublicIpOnLaunch: 'true'
-      CidrBlock: !FindInMap 
-        - Subnet2Config
-        - Public
-        - CIDR
-      Tags:
-        - Key: Name
-          Value: LapisCityProdSubnet
   VPC2PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC2
       AvailabilityZone: !Select 
-        - '1'
+        - '0'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -139,8 +124,23 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: LapisCityPreProdSubnet
+          Value: LapisCityProdSubnet
   VPC2PublicSubnet2:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref VPC2
+      AvailabilityZone: !Select 
+        - '1'
+        - !GetAZs us-east-1
+      MapPublicIpOnLaunch: 'true'
+      CidrBlock: !FindInMap 
+        - Subnet2Config
+        - Public2
+        - CIDR
+      Tags:
+        - Key: Name
+          Value: LapisCityPreProdSubnet
+  VPC2PublicSubnet3:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC2
@@ -150,12 +150,12 @@ Resources:
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
         - Subnet2Config
-        - Public2
+        - Public3
         - CIDR
       Tags:
         - Key: Name
           Value: LapisCityDevSubnet
-  VPC3PublicSubnet:
+  VPC3PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC3
@@ -165,12 +165,12 @@ Resources:
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
         - Subnet3Config
-        - Public
+        - Public1
         - CIDR
       Tags:
         - Key: Name
           Value: RubyCityProdSubnet
-  VPC3PublicSubnet1:
+  VPC3PublicSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC3
@@ -180,12 +180,12 @@ Resources:
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
         - Subnet3Config
-        - Public1
+        - Public2
         - CIDR
       Tags:
         - Key: Name
           Value: RubyCityPreProdSubnet
-  VPC3PublicSubnet2:
+  VPC3PublicSubnet3:
     Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId: !Ref VPC3
@@ -195,7 +195,7 @@ Resources:
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
         - Subnet3Config
-        - Public2
+        - Public3
         - CIDR
       Tags:
         - Key: Name
@@ -281,11 +281,6 @@ Resources:
       RouteTableId: !Ref PublicRouteTable3
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway3
-  PublicSubnet1RouteTableAssociation:
-    Type: 'AWS::EC2::SubnetRouteTableAssociation'
-    Properties:
-      SubnetId: !Ref VPC1PublicSubnet
-      RouteTableId: !Ref PublicRouteTable1
   PublicSubnet1RouteTableAssociation1:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
@@ -296,11 +291,11 @@ Resources:
     Properties:
       SubnetId: !Ref VPC1PublicSubnet2
       RouteTableId: !Ref PublicRouteTable1
-  PublicSubnet2RouteTableAssociation:
+  PublicSubnet1RouteTableAssociation3:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
-      SubnetId: !Ref VPC2PublicSubnet
-      RouteTableId: !Ref PublicRouteTable2
+      SubnetId: !Ref VPC1PublicSubnet3
+      RouteTableId: !Ref PublicRouteTable1
   PublicSubnet2RouteTableAssociation1:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
@@ -311,11 +306,11 @@ Resources:
     Properties:
       SubnetId: !Ref VPC2PublicSubnet2
       RouteTableId: !Ref PublicRouteTable2
-  PublicSubnet3RouteTableAssociation:
+  PublicSubnet2RouteTableAssociation3:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
-      SubnetId: !Ref VPC3PublicSubnet
-      RouteTableId: !Ref PublicRouteTable3
+      SubnetId: !Ref VPC2PublicSubnet3
+      RouteTableId: !Ref PublicRouteTable2
   PublicSubnet3RouteTableAssociation1:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
@@ -325,6 +320,11 @@ Resources:
     Type: 'AWS::EC2::SubnetRouteTableAssociation'
     Properties:
       SubnetId: !Ref VPC3PublicSubnet2
+      RouteTableId: !Ref PublicRouteTable3
+  PublicSubnet3RouteTableAssociation3:
+    Type: 'AWS::EC2::SubnetRouteTableAssociation'
+    Properties:
+      SubnetId: !Ref VPC3PublicSubnet3
       RouteTableId: !Ref PublicRouteTable3
   PublicNetworkAcl1:
     Type: 'AWS::EC2::NetworkAcl'
@@ -533,20 +533,50 @@ Resources:
       PortRange:
         From: '0'
         To: '65535'
-  PublicSubnet1NetworkAclAssociation:
+  PublicSubnet1NetworkAclAssociation1:
     Type: 'AWS::EC2::SubnetNetworkAclAssociation'
     Properties:
-      SubnetId: !Ref VPC1PublicSubnet
+      SubnetId: !Ref VPC1PublicSubnet1
       NetworkAclId: !Ref PublicNetworkAcl1
-  PublicSubnet2NetworkAclAssociation:
+  PublicSubnet1NetworkAclAssociation2:
     Type: 'AWS::EC2::SubnetNetworkAclAssociation'
     Properties:
-      SubnetId: !Ref VPC2PublicSubnet
+      SubnetId: !Ref VPC1PublicSubnet2
+      NetworkAclId: !Ref PublicNetworkAcl1
+  PublicSubnet1NetworkAclAssociation3:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC1PublicSubnet3
+      NetworkAclId: !Ref PublicNetworkAcl1
+  PublicSubnet2NetworkAclAssociation1:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC2PublicSubnet1
       NetworkAclId: !Ref PublicNetworkAcl2
-  PublicSubnet3NetworkAclAssociation:
+  PublicSubnet2NetworkAclAssociation2:
     Type: 'AWS::EC2::SubnetNetworkAclAssociation'
     Properties:
-      SubnetId: !Ref VPC3PublicSubnet
+      SubnetId: !Ref VPC2PublicSubnet2
+      NetworkAclId: !Ref PublicNetworkAcl2
+  PublicSubnet2NetworkAclAssociation3:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC2PublicSubnet3
+      NetworkAclId: !Ref PublicNetworkAcl2
+  PublicSubnet3NetworkAclAssociation1:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC3PublicSubnet1
+      NetworkAclId: !Ref PublicNetworkAcl3
+  PublicSubnet3NetworkAclAssociation2:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC3PublicSubnet2
+      NetworkAclId: !Ref PublicNetworkAcl3
+  PublicSubnet3NetworkAclAssociation3:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC3PublicSubnet3
       NetworkAclId: !Ref PublicNetworkAcl3
   EC2Instance1:
     Type: 'AWS::EC2::Instance'
@@ -579,7 +609,7 @@ Resources:
           AssociatePublicIpAddress: 'true'
           DeviceIndex: '0'
           DeleteOnTermination: 'true'
-          SubnetId: !Ref VPC1PublicSubnet
+          SubnetId: !Ref VPC1PublicSubnet1
       Tags:
         - Key: Name
           Value: IronCityEC2
@@ -634,7 +664,7 @@ Resources:
           AssociatePublicIpAddress: 'true'
           DeviceIndex: '0'
           DeleteOnTermination: 'true'
-          SubnetId: !Ref VPC2PublicSubnet
+          SubnetId: !Ref VPC2PublicSubnet1
       Tags:
         - Key: Name
           Value: LapisCityEC2
@@ -689,7 +719,7 @@ Resources:
           AssociatePublicIpAddress: 'true'
           DeviceIndex: '0'
           DeleteOnTermination: 'true'
-          SubnetId: !Ref VPC3PublicSubnet
+          SubnetId: !Ref VPC3PublicSubnet1
       Tags:
         - Key: Name
           Value: RubyCityEC2
@@ -713,16 +743,3 @@ Resources:
       Tags:
         - Key: Name
           Value: RubyCitySG
-Outputs:
-  Pub1IpAddress1:
-    Value: !GetAtt
-      - EC2Instance1
-      - PublicIp
-  Pub2IpAddress1:
-    Value: !GetAtt
-      - EC2Instance2
-      - PublicIp
-  Pub3IpAddress1:
-    Value: !GetAtt
-      - EC2Instance3
-      - PublicIp

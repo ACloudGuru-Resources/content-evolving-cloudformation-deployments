@@ -268,28 +268,16 @@ Resources:
     Properties:
       VpcId: !Ref VPC1
       Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackName'
-        - Key: Network
-          Value: Public
   PublicNetworkAcl2:
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
       VpcId: !Ref VPC2
       Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackName'
-        - Key: Network
-          Value: Public
   PublicNetworkAcl3:
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
       VpcId: !Ref VPC3
       Tags:
-        - Key: Application
-          Value: !Ref 'AWS::StackName'
-        - Key: Network
-          Value: Public
   InboundHTTPPublicNetworkAcl1Entry:
     Type: 'AWS::EC2::NetworkAclEntry'
     Properties:

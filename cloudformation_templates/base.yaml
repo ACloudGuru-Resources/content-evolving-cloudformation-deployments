@@ -470,20 +470,50 @@ Resources:
       PortRange:
         From: '0'
         To: '65535'
-  PublicSubnet1NetworkAclAssociation:
+  PublicSubnet1NetworkAclAssociation1:
     Type: 'AWS::EC2::SubnetNetworkAclAssociation'
     Properties:
       SubnetId: !Ref VPC1PublicSubnet
       NetworkAclId: !Ref PublicNetworkAcl1
-  PublicSubnet2NetworkAclAssociation:
+  PublicSubnet1NetworkAclAssociation2:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC1PublicSubnet1
+      NetworkAclId: !Ref PublicNetworkAcl1
+  PublicSubnet1NetworkAclAssociation3:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC1PublicSubnet2
+      NetworkAclId: !Ref PublicNetworkAcl1
+  PublicSubnet2NetworkAclAssociation1:
     Type: 'AWS::EC2::SubnetNetworkAclAssociation'
     Properties:
       SubnetId: !Ref VPC2PublicSubnet
       NetworkAclId: !Ref PublicNetworkAcl2
+  PublicSubnet2NetworkAclAssociation:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC2PublicSubnet1
+      NetworkAclId: !Ref PublicNetworkAcl2
   PublicSubnet3NetworkAclAssociation:
     Type: 'AWS::EC2::SubnetNetworkAclAssociation'
     Properties:
+      SubnetId: !Ref VPC2PublicSubnet1
+      NetworkAclId: !Ref PublicNetworkAcl2
+  PublicSubnet3NetworkAclAssociation1:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
       SubnetId: !Ref VPC3PublicSubnet
+      NetworkAclId: !Ref PublicNetworkAcl3
+  PublicSubnet3NetworkAclAssociation2:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC3PublicSubnet1
+      NetworkAclId: !Ref PublicNetworkAcl3
+  PublicSubnet3NetworkAclAssociation3:
+    Type: 'AWS::EC2::SubnetNetworkAclAssociation'
+    Properties:
+      SubnetId: !Ref VPC3PublicSubnet2
       NetworkAclId: !Ref PublicNetworkAcl3
   EC2Instance1:
     Type: 'AWS::EC2::Instance'
@@ -531,7 +561,6 @@ Resources:
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
-      GroupName: TestSG
   EC2Instance2:
     Type: 'AWS::EC2::Instance'
     Properties:
@@ -624,16 +653,3 @@ Resources:
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
-Outputs:
-  Pub1IpAddress1:
-    Value: !GetAtt
-      - EC2Instance1
-      - PublicIp
-  Pub2IpAddress1:
-    Value: !GetAtt
-      - EC2Instance2
-      - PublicIp
-  Pub3IpAddress1:
-    Value: !GetAtt
-      - EC2Instance3
-      - PublicIp

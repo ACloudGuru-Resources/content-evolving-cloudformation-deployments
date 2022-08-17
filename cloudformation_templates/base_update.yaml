@@ -40,7 +40,7 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: Iron City
+          Value: <VPC NAME>
   VPC2:
     Type: 'AWS::EC2::VPC'
     Properties:
@@ -52,7 +52,7 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: Lapis City
+          Value: <VPC NAME>
   VPC3:
     Type: 'AWS::EC2::VPC'
     Properties:
@@ -64,7 +64,7 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: Ruby City
+          Value: <VPC NAME>
   VPC1PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -79,7 +79,9 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: IronCityProdSubnet
+          Value: <SUBNET NAME>
+        - Key: Environment
+          Value: <ENVIRONMENT NAME>
   VPC1PublicSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -94,7 +96,9 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: IronCityPreProdSubnet
+          Value: <SUBNET NAME>
+        - Key: Environment
+          Value: <ENVIRONMENT NAME>
   VPC1PublicSubnet3:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -109,7 +113,9 @@ Resources:
         - CIDR
       Tags:
         - Key: Name
-          Value: IronCityDevSubnet
+          Value: <SUBNET NAME>
+        - Key: Environment
+          Value: <ENVIRONMENT NAME>
   VPC2PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -125,6 +131,8 @@ Resources:
       Tags:
         - Key: Name
           Value: LapisCityProdSubnet
+        - Key: Environment
+          Value: Prod
   VPC2PublicSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -140,6 +148,8 @@ Resources:
       Tags:
         - Key: Name
           Value: LapisCityPreProdSubnet
+        - Key: Environment
+          Value: PreProd
   VPC2PublicSubnet3:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -155,6 +165,8 @@ Resources:
       Tags:
         - Key: Name
           Value: LapisCityDevSubnet
+        - Key: Environment
+          Value: Dev
   VPC3PublicSubnet1:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -170,6 +182,8 @@ Resources:
       Tags:
         - Key: Name
           Value: RubyCityProdSubnet
+        - Key: Environment
+          Value: Prod
   VPC3PublicSubnet2:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -185,6 +199,8 @@ Resources:
       Tags:
         - Key: Name
           Value: RubyCityPreProdSubnet
+        - Key: Environment
+          Value: PreProd
   VPC3PublicSubnet3:
     Type: 'AWS::EC2::Subnet'
     Properties:
@@ -200,30 +216,26 @@ Resources:
       Tags:
         - Key: Name
           Value: RubyCityDevSubnet
+        - Key: Environment
+          Value: Dev
   InternetGateway1:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
       Tags:
         - Key: Name
-          Value: IronIGW
-        - Key: Network
-          Value: Public
+          Value: <IGW NAME>
   InternetGateway2:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
       Tags:
         - Key: Name
-          Value: LapisIGW
-        - Key: Network
-          Value: Public
+          Value: LapisCityIGW
   InternetGateway3:
     Type: 'AWS::EC2::InternetGateway'
     Properties:
       Tags:
         - Key: Name
-          Value: RubyIGW
-        - Key: Network
-          Value: Public
+          Value: RubyCityIGW
   GatewayToInternet1:
     Type: 'AWS::EC2::VPCGatewayAttachment'
     Properties:
@@ -245,21 +257,21 @@ Resources:
       VpcId: !Ref VPC1
       Tags:
         - Key: Name
-          Value: IronRT
+          Value: <RT NAME>
   PublicRouteTable2:
     Type: 'AWS::EC2::RouteTable'
     Properties:
       VpcId: !Ref VPC2
       Tags:
         - Key: Name
-          Value: LapisRT
+          Value: LapisCityRT
   PublicRouteTable3:
     Type: 'AWS::EC2::RouteTable'
     Properties:
       VpcId: !Ref VPC3
       Tags:
         - Key: Name
-          Value: RubyRT
+          Value: RubyCityRT
   PublicRoute1:
     Type: 'AWS::EC2::Route'
     DependsOn: GatewayToInternet1
@@ -332,27 +344,21 @@ Resources:
       VpcId: !Ref VPC1
       Tags:
         - Key: Name
-          Value: IronNACL
-        - Key: Network
-          Value: Public
+          Value: <NACL NAME>
   PublicNetworkAcl2:
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
       VpcId: !Ref VPC2
       Tags:
         - Key: Name
-          Value: LapisNACL
-        - Key: Network
-          Value: Public
+          Value: LapisCityNACL
   PublicNetworkAcl3:
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
       VpcId: !Ref VPC3
       Tags:
         - Key: Name
-          Value: RubyNACL
-        - Key: Network
-          Value: Public
+          Value: RubyCityNACL
   InboundHTTPPublicNetworkAcl1Entry:
     Type: 'AWS::EC2::NetworkAclEntry'
     Properties:
@@ -612,9 +618,9 @@ Resources:
           SubnetId: !Ref VPC1PublicSubnet1
       Tags:
         - Key: Name
-          Value: IronCityEC2
+          Value: <EC2 NAME>
         - Key: Environment
-          Value: Prod
+          Value: <ENVIRONMENT NAME>
   EC2SecurityGroup1:
     Type: 'AWS::EC2::SecurityGroup'
     Properties:
@@ -629,10 +635,10 @@ Resources:
           FromPort: 80
           ToPort: 80
           IpProtocol: tcp
-      GroupName: IronCitySG
+      GroupName: <SECURITY GROUP NAME>
       Tags:
         - Key: Name
-          Value: IronCitySG
+          Value: <SECURITY GROUP NAME
   EC2Instance2:
     Type: 'AWS::EC2::Instance'
     Properties:
@@ -667,7 +673,7 @@ Resources:
           SubnetId: !Ref VPC2PublicSubnet1
       Tags:
         - Key: Name
-          Value: LapisCityEC2
+          Value: LapisCityProd
         - Key: Environment
           Value: Prod
   EC2SecurityGroup2:
@@ -722,7 +728,7 @@ Resources:
           SubnetId: !Ref VPC3PublicSubnet1
       Tags:
         - Key: Name
-          Value: RubyCityEC2
+          Value: RubyCityProd
         - Key: Environment
           Value: Prod
   EC2SecurityGroup3:

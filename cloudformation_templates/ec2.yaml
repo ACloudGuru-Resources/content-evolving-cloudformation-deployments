@@ -10,7 +10,7 @@ Resources:
         - Key: Name
           Value: <EC2 INSTANCE NAME>
         - Key: Environment
-          Value: Dev
+          Value: PreProd
       UserData: 
         Fn::Base64:
           !Sub |
@@ -40,7 +40,7 @@ Resources:
         - Key: Name
           Value: <EC2 INSTANCE NAME>
         - Key: Environment
-          Value: Pre-Prod
+          Value: Dev
       UserData: 
         Fn::Base64:
           !Sub |

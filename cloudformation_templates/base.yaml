@@ -73,7 +73,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC1
       AvailabilityZone: !Select 
-        - '0'
+        - '1'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -85,7 +85,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC1
       AvailabilityZone: !Select 
-        - '0'
+        - '2'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -109,7 +109,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC2
       AvailabilityZone: !Select 
-        - '0'
+        - '1'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -121,7 +121,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC2
       AvailabilityZone: !Select 
-        - '0'
+        - '2'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -145,7 +145,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC3
       AvailabilityZone: !Select 
-        - '0'
+        - '1'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 
@@ -157,7 +157,7 @@ Resources:
     Properties:
       VpcId: !Ref VPC3
       AvailabilityZone: !Select 
-        - '0'
+        - '2'
         - !GetAZs us-east-1
       MapPublicIpOnLaunch: 'true'
       CidrBlock: !FindInMap 

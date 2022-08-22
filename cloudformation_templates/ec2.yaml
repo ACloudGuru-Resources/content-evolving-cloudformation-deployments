@@ -4,13 +4,11 @@ Resources:
   EC2Instance1:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: t3.micro
+      InstanceType: <INSTANCE TYPE>
       ImageId: ami-090fa75af13c156b4
       Tags:
         - Key: Name
           Value: <EC2 INSTANCE NAME>
-        - Key: Environment
-          Value: PreProd
       UserData: 
         Fn::Base64:
           !Sub |
@@ -34,13 +32,11 @@ Resources:
   EC2Instance2:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: t3.micro
+      InstanceType: <INSTANCE TYPE>
       ImageId: ami-090fa75af13c156b4
       Tags:
         - Key: Name
           Value: <EC2 INSTANCE NAME>
-        - Key: Environment
-          Value: Dev
       UserData: 
         Fn::Base64:
           !Sub |

@@ -356,7 +356,6 @@ Resources:
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
       VpcId: !Ref VPC3
-      Tags:
         - Key: Name
           Value: RubyCityNACL
   InboundHTTPPublicNetworkAcl1Entry:

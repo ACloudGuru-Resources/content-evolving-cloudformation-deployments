@@ -38,9 +38,6 @@ Resources:
         - Subnet1Config
         - VPC1
         - CIDR
-      Tags:
-        - Key: Name
-          Value: <VPC NAME>
   VPC2:
     Type: 'AWS::EC2::VPC'
     Properties:
@@ -356,6 +353,7 @@ Resources:
     Type: 'AWS::EC2::NetworkAcl'
     Properties:
       VpcId: !Ref VPC3
+      Tags:
         - Key: Name
           Value: RubyCityNACL
   InboundHTTPPublicNetworkAcl1Entry:

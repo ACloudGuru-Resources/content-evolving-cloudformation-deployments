@@ -6,9 +6,6 @@ Resources:
     Properties:
       InstanceType: t3.micro
       ImageId: ami-090fa75af13c156b4
-      SecurityGroupIds: 
-        - <SECURITY GROUP ID>
-      SubnetId: <SUBNET ID>
       Tags:
         - Key: Name
           Value: <INSTANCE NAME>

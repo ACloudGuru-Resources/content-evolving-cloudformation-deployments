@@ -2,15 +2,21 @@ AWSTemplateFormatVersion: 2010-09-09
 Description: Create EC2 instances and specify network. 
 Parameters: 
   SecurityGroupList:
-
+    Description: Select you SecurityGroup
+    
   SubnetId:
-
+    Description: Select your Subnet
+    
   InstanceType:
-
+    Description: Select your Instance type
+    ConstraintDescription: Must be a valid EC2 Instance type
   Environment:
-
+    Description: Select your Environment
+    
   InstanceName:
-
+    Description: Specify the instance name
+    ConstraintDescription: Must follow normal syntax conventions 
+    
 Resources:
   EC2Instance:
     Type: AWS::EC2::Instance

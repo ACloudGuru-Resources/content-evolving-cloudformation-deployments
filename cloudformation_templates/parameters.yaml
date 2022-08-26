@@ -10,6 +10,7 @@ Parameters:
   InstanceType:
     Description: Select your Instance type
     ConstraintDescription: Must be a valid EC2 Instance type
+    
   Environment:
     Description: Select your Environment
     
